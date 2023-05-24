@@ -1,0 +1,998 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "df3ee37b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from textblob import TextBlob\n",
+    "import nltk"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "2a2385f3",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "b = TextBlob(\"I havv goog spelling\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "4dac70ee",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "TextBlob(\"I have good spelling\")"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "b.correct()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "4eab5ae8",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "[nltk_data] Downloading package punkt to\n",
+      "[nltk_data]     C:\\Users\\harsh\\AppData\\Roaming\\nltk_data...\n",
+      "[nltk_data]   Unzipping tokenizers\\punkt.zip.\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "WordList(['Beautiful', 'is', 'better', 'than', 'ugly.Something', 'is', 'better', 'than', 'nothing.Simple', 'is', 'better', 'than', 'complex'])"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "nltk.download('punkt')\n",
+    "b1 = TextBlob(\"Beautiful is better than ugly.\"\n",
+    "             \"Something is better than nothing.\"\n",
+    "             \"Simple is better than complex.\")\n",
+    "b1.words"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "c3924995",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[Sentence(\"Beautiful is better than ugly.Something is better than nothing.Simple is better than complex.\")]"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "b1.sentences"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "8cb3b30e",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "WordList(['Use', '4', 'speces', 'per', 'intendation', 'level'])"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sentence = TextBlob(\"Use 4 speces per intendation level\")\n",
+    "sentence.words"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "9af2aeb2",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'spece'"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sentence.words[2].singularize()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "aabfa0b3",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'levels'"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sentence.words[5].pluralize()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "a2608d04",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "WordList(['cat', 'dog', 'octopus'])"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "animals = TextBlob(\"cat dog octopus\")\n",
+    "animals.words"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "63f3534b",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "WordList(['cats', 'dogs', 'octopodes'])"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "animals.words.pluralize()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "0e83f5a0",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 19,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sen = TextBlob(\"Didn't get success, it's ok.\" \"Start again\" \"Try again\" \"Run again\")\n",
+    "sen.word_counts['again']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "7109c7da",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sen.words.count('again')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "4d46b579",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'And/CC/O/O now/RB/B-ADVP/O for/IN/B-PP/B-PNP something/NN/B-NP/I-PNP completely/RB/B-ADJP/O different/JJ/I-ADJP/O ././O/O'"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "b2 = TextBlob(\"And now for something completely different.\")\n",
+    "b2.parse()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "55df0302",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "TextBlob(\"And now for somethi\")"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "b2[0:19]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "413091ce",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "TextBlob(\"AND NOW FOR SOMETHING COMPLETELY DIFFERENT.\")"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "b2.upper()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "fd68575e",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "4"
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "b2.find('now')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "id": "fb8e1c97",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 39,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "apple_blob = TextBlob('apples')\n",
+    "banana_blob = TextBlob('bananas')\n",
+    "apple_blob < banana_blob"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "f81c0a35",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "blob = TextBlob(\"Now is better then never.\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "id": "2583888f",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[WordList(['Now', 'is', 'better']),\n",
+       " WordList(['is', 'better', 'then']),\n",
+       " WordList(['better', 'then', 'never'])]"
+      ]
+     },
+     "execution_count": 41,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "blob.ngrams(n=3)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "id": "40250631",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'Good Day everyone, how are you all today? Its fun learnning data analysis. Hope you all are practicing well.'"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from nltk.tokenize import sent_tokenize\n",
+    "text = \"\"\"Good Day everyone, how are you all today? Its fun learnning data analysis. Hope you all are practicing well.\"\"\"\n",
+    "text"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "id": "3c2d0514",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['Good Day everyone, how are you all today?',\n",
+       " 'Its fun learnning data analysis.',\n",
+       " 'Hope you all are practicing well.']"
+      ]
+     },
+     "execution_count": 44,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "tokenized_text = sent_tokenize(text)\n",
+    "tokenized_text"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "id": "c5493fa1",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['Good',\n",
+       " 'Day',\n",
+       " 'everyone',\n",
+       " ',',\n",
+       " 'how',\n",
+       " 'are',\n",
+       " 'you',\n",
+       " 'all',\n",
+       " 'today',\n",
+       " '?',\n",
+       " 'Its',\n",
+       " 'fun',\n",
+       " 'learnning',\n",
+       " 'data',\n",
+       " 'analysis',\n",
+       " '.',\n",
+       " 'Hope',\n",
+       " 'you',\n",
+       " 'all',\n",
+       " 'are',\n",
+       " 'practicing',\n",
+       " 'well',\n",
+       " '.']"
+      ]
+     },
+     "execution_count": 45,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from nltk.tokenize import word_tokenize\n",
+    "tokenizer_word = word_tokenize(text)\n",
+    "tokenizer_word"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "70cbd882",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "FreqDist({'are': 2, 'you': 2, 'all': 2, '.': 2, 'Good': 1, 'Day': 1, 'everyone': 1, ',': 1, 'how': 1, 'today': 1, ...})"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from nltk.probability import FreqDist\n",
+    "fdist = FreqDist(tokenizer_word)\n",
+    "fdist"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "id": "8a8e8b08",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[('are', 2), ('you', 2), ('all', 2), ('.', 2)]"
+      ]
+     },
+     "execution_count": 47,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "fdist.most_common(4)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "id": "889423a8",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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5vO3bdsmatSooXm8bt06AUAkJCRoro0fP144OTmJjIwMzbXg4GAxfvx4zeMGDRqIPn366LT9yiuviL59+2oeAxA7d+4UQgixceNG0axZM1FUVKT5eF5ennB0dBS//PKLePjwoQAgoqKiKv8iEFGV4cgNERndSy+9hDt37mDPnj3o06cPoqKi0K5dO0RGRgIADh06hJ49e6Ju3bpwdXXF8OHD8fDhQ2RnZ2vacHJyQqNGjTSPvby84OvrCxcXF51r9+/f16ndqVOnEo///PPPUvt5/vx5JCQkwNXVVTPi5OnpidzcXFy7dg2enp4YNWoUgoODERoaimXLliE5OdnQl4eIJMZwQ0RVwsHBAS+88AI+/vhjnDx5EqNGjcLs2bNx48YN9OvXD23atMGPP/6I2NhYzbqY/Px8zedrH+4HFN/CXdq1oqIivfuYmZmJp59+GnFxcTpv8fHxGDp0KABg3bp1OHXqFJ577jl8//33aNq0KU6fPq13TSKSHsMNEcmiZcuWyMrKQmxsLIqKirB48WJ07NgRTZs2xZ07dySr83jwOH36NFq0aFHqc9u1a4erV6+idu3aaNy4sc6bu7u75nmBgYEIDw/HyZMn0bp1a2zevFmy/hKR4RhuiMioHj58iB49emDTpk24cOECEhMTsW3bNixatAgDBgxA48aNUVBQgC+++ALXr1/Hxo0bsWrVKsnqnzhxAosWLUJ8fDxWrlyJbdu2YfLkyaU+d9iwYahZsyYGDBiAY8eOITExEVFRUZg0aRL+/vtvJCYmIjw8HKdOncLNmzdx4MABXL16tcywRETy4D43RGRULi4u6NChA5YuXYpr166hoKAAPj4+GDduHD744AM4OjpiyZIl+PTTTxEeHo6uXbti4cKFGDFihCT1p0+fjpiYGERERMDNzQ1LlixBcHBwqc91cnJCdHQ0Zs6ciUGDBiEjIwN169ZFz5494ebmhpycHFy5cgXr16/Hw4cP4e3tjQkTJmD8+PGS9JWIpKEQQgi5O0FEZAy+vr6YMmUKpkyZIndXiKgKcVqKiIiILArDDREREVkUTksRERGRReHIDREREVkUhhsiIiKyKAw3REREZFEYboiIiMiiMNwQERGRRWG4ISIiIovCcENEREQWheGGiIiILArDDREREVmU/wNu/zcThhGSVgAAAABJRU5ErkJggg==",
+      "text/plain": [
+       "<Figure size 640x480 with 1 Axes>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "fdist.plot(30,cumulative=False)\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "f6ca75fc",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "[nltk_data] Downloading package stopwords to\n",
+      "[nltk_data]     C:\\Users\\harsh\\AppData\\Roaming\\nltk_data...\n",
+      "[nltk_data]   Unzipping corpora\\stopwords.zip.\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 50,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "nltk.download('stopwords')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "id": "e2cd774e",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'a',\n",
+       " 'about',\n",
+       " 'above',\n",
+       " 'after',\n",
+       " 'again',\n",
+       " 'against',\n",
+       " 'ain',\n",
+       " 'all',\n",
+       " 'am',\n",
+       " 'an',\n",
+       " 'and',\n",
+       " 'any',\n",
+       " 'are',\n",
+       " 'aren',\n",
+       " \"aren't\",\n",
+       " 'as',\n",
+       " 'at',\n",
+       " 'be',\n",
+       " 'because',\n",
+       " 'been',\n",
+       " 'before',\n",
+       " 'being',\n",
+       " 'below',\n",
+       " 'between',\n",
+       " 'both',\n",
+       " 'but',\n",
+       " 'by',\n",
+       " 'can',\n",
+       " 'couldn',\n",
+       " \"couldn't\",\n",
+       " 'd',\n",
+       " 'did',\n",
+       " 'didn',\n",
+       " \"didn't\",\n",
+       " 'do',\n",
+       " 'does',\n",
+       " 'doesn',\n",
+       " \"doesn't\",\n",
+       " 'doing',\n",
+       " 'don',\n",
+       " \"don't\",\n",
+       " 'down',\n",
+       " 'during',\n",
+       " 'each',\n",
+       " 'few',\n",
+       " 'for',\n",
+       " 'from',\n",
+       " 'further',\n",
+       " 'had',\n",
+       " 'hadn',\n",
+       " \"hadn't\",\n",
+       " 'has',\n",
+       " 'hasn',\n",
+       " \"hasn't\",\n",
+       " 'have',\n",
+       " 'haven',\n",
+       " \"haven't\",\n",
+       " 'having',\n",
+       " 'he',\n",
+       " 'her',\n",
+       " 'here',\n",
+       " 'hers',\n",
+       " 'herself',\n",
+       " 'him',\n",
+       " 'himself',\n",
+       " 'his',\n",
+       " 'how',\n",
+       " 'i',\n",
+       " 'if',\n",
+       " 'in',\n",
+       " 'into',\n",
+       " 'is',\n",
+       " 'isn',\n",
+       " \"isn't\",\n",
+       " 'it',\n",
+       " \"it's\",\n",
+       " 'its',\n",
+       " 'itself',\n",
+       " 'just',\n",
+       " 'll',\n",
+       " 'm',\n",
+       " 'ma',\n",
+       " 'me',\n",
+       " 'mightn',\n",
+       " \"mightn't\",\n",
+       " 'more',\n",
+       " 'most',\n",
+       " 'mustn',\n",
+       " \"mustn't\",\n",
+       " 'my',\n",
+       " 'myself',\n",
+       " 'needn',\n",
+       " \"needn't\",\n",
+       " 'no',\n",
+       " 'nor',\n",
+       " 'not',\n",
+       " 'now',\n",
+       " 'o',\n",
+       " 'of',\n",
+       " 'off',\n",
+       " 'on',\n",
+       " 'once',\n",
+       " 'only',\n",
+       " 'or',\n",
+       " 'other',\n",
+       " 'our',\n",
+       " 'ours',\n",
+       " 'ourselves',\n",
+       " 'out',\n",
+       " 'over',\n",
+       " 'own',\n",
+       " 're',\n",
+       " 's',\n",
+       " 'same',\n",
+       " 'shan',\n",
+       " \"shan't\",\n",
+       " 'she',\n",
+       " \"she's\",\n",
+       " 'should',\n",
+       " \"should've\",\n",
+       " 'shouldn',\n",
+       " \"shouldn't\",\n",
+       " 'so',\n",
+       " 'some',\n",
+       " 'such',\n",
+       " 't',\n",
+       " 'than',\n",
+       " 'that',\n",
+       " \"that'll\",\n",
+       " 'the',\n",
+       " 'their',\n",
+       " 'theirs',\n",
+       " 'them',\n",
+       " 'themselves',\n",
+       " 'then',\n",
+       " 'there',\n",
+       " 'these',\n",
+       " 'they',\n",
+       " 'this',\n",
+       " 'those',\n",
+       " 'through',\n",
+       " 'to',\n",
+       " 'too',\n",
+       " 'under',\n",
+       " 'until',\n",
+       " 'up',\n",
+       " 've',\n",
+       " 'very',\n",
+       " 'was',\n",
+       " 'wasn',\n",
+       " \"wasn't\",\n",
+       " 'we',\n",
+       " 'were',\n",
+       " 'weren',\n",
+       " \"weren't\",\n",
+       " 'what',\n",
+       " 'when',\n",
+       " 'where',\n",
+       " 'which',\n",
+       " 'while',\n",
+       " 'who',\n",
+       " 'whom',\n",
+       " 'why',\n",
+       " 'will',\n",
+       " 'with',\n",
+       " 'won',\n",
+       " \"won't\",\n",
+       " 'wouldn',\n",
+       " \"wouldn't\",\n",
+       " 'y',\n",
+       " 'you',\n",
+       " \"you'd\",\n",
+       " \"you'll\",\n",
+       " \"you're\",\n",
+       " \"you've\",\n",
+       " 'your',\n",
+       " 'yours',\n",
+       " 'yourself',\n",
+       " 'yourselves'}"
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from nltk.corpus import stopwords\n",
+    "stop_words = set(stopwords.words(\"english\"))\n",
+    "stop_words"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 55,
+   "id": "c7b63d00",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Tokenized sentence :  ['Good', 'Day', 'everyone', ',', 'how', 'are', 'you', 'all', 'today', '?', 'Its', 'fun', 'learnning', 'data', 'analysis', '.', 'Hope', 'you', 'all', 'are', 'practicing', 'well', '.']\n",
+      "Filtered sentence :  ['Good', 'Day', 'everyone', ',', 'today', '?', 'Its', 'fun', 'learnning', 'data', 'analysis', '.', 'Hope', 'practicing', 'well', '.']\n"
+     ]
+    }
+   ],
+   "source": [
+    "filtered_sent=[]\n",
+    "for w in tokenizer_word:\n",
+    "    if w not in stop_words:\n",
+    "        filtered_sent.append(w)\n",
+    "\n",
+    "print(\"Tokenized sentence : \",tokenizer_word)\n",
+    "print(\"Filtered sentence : \",filtered_sent)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "id": "460991f4",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "LookupError",
+     "evalue": "\n**********************************************************************\n  Resource \u001b[93mwordnet\u001b[0m not found.\n  Please use the NLTK Downloader to obtain the resource:\n\n  \u001b[31m>>> import nltk\n  >>> nltk.download('wordnet')\n  \u001b[0m\n  For more information see: https://www.nltk.org/data.html\n\n  Attempted to load \u001b[93mcorpora/wordnet\u001b[0m\n\n  Searched in:\n    - 'C:\\\\Users\\\\harsh/nltk_data'\n    - 'C:\\\\Python310\\\\nltk_data'\n    - 'C:\\\\Python310\\\\share\\\\nltk_data'\n    - 'C:\\\\Python310\\\\lib\\\\nltk_data'\n    - 'C:\\\\Users\\\\harsh\\\\AppData\\\\Roaming\\\\nltk_data'\n    - 'C:\\\\nltk_data'\n    - 'D:\\\\nltk_data'\n    - 'E:\\\\nltk_data'\n**********************************************************************\n",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mLookupError\u001b[0m                               Traceback (most recent call last)",
+      "File \u001b[1;32mC:\\Python310\\lib\\site-packages\\nltk\\corpus\\util.py:84\u001b[0m, in \u001b[0;36mLazyCorpusLoader.__load\u001b[1;34m(self)\u001b[0m\n\u001b[0;32m     83\u001b[0m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m---> 84\u001b[0m     root \u001b[38;5;241m=\u001b[39m \u001b[43mnltk\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mdata\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mfind\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43mf\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;132;43;01m{\u001b[39;49;00m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43msubdir\u001b[49m\u001b[38;5;132;43;01m}\u001b[39;49;00m\u001b[38;5;124;43m/\u001b[39;49m\u001b[38;5;132;43;01m{\u001b[39;49;00m\u001b[43mzip_name\u001b[49m\u001b[38;5;132;43;01m}\u001b[39;49;00m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m)\u001b[49m\n\u001b[0;32m     85\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mLookupError\u001b[39;00m:\n",
+      "File \u001b[1;32mC:\\Python310\\lib\\site-packages\\nltk\\data.py:583\u001b[0m, in \u001b[0;36mfind\u001b[1;34m(resource_name, paths)\u001b[0m\n\u001b[0;32m    582\u001b[0m resource_not_found \u001b[38;5;241m=\u001b[39m \u001b[38;5;124mf\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;132;01m{\u001b[39;00msep\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;132;01m{\u001b[39;00mmsg\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;132;01m{\u001b[39;00msep\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m--> 583\u001b[0m \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mLookupError\u001b[39;00m(resource_not_found)\n",
+      "\u001b[1;31mLookupError\u001b[0m: \n**********************************************************************\n  Resource \u001b[93mwordnet\u001b[0m not found.\n  Please use the NLTK Downloader to obtain the resource:\n\n  \u001b[31m>>> import nltk\n  >>> nltk.download('wordnet')\n  \u001b[0m\n  For more information see: https://www.nltk.org/data.html\n\n  Attempted to load \u001b[93mcorpora/wordnet.zip/wordnet/\u001b[0m\n\n  Searched in:\n    - 'C:\\\\Users\\\\harsh/nltk_data'\n    - 'C:\\\\Python310\\\\nltk_data'\n    - 'C:\\\\Python310\\\\share\\\\nltk_data'\n    - 'C:\\\\Python310\\\\lib\\\\nltk_data'\n    - 'C:\\\\Users\\\\harsh\\\\AppData\\\\Roaming\\\\nltk_data'\n    - 'C:\\\\nltk_data'\n    - 'D:\\\\nltk_data'\n    - 'E:\\\\nltk_data'\n**********************************************************************\n",
+      "\nDuring handling of the above exception, another exception occurred:\n",
+      "\u001b[1;31mLookupError\u001b[0m                               Traceback (most recent call last)",
+      "Cell \u001b[1;32mIn[56], line 6\u001b[0m\n\u001b[0;32m      4\u001b[0m stem \u001b[38;5;241m=\u001b[39m PorterStemmer()\n\u001b[0;32m      5\u001b[0m word \u001b[38;5;241m=\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mflying\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m----> 6\u001b[0m \u001b[38;5;28mprint\u001b[39m(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mLemmatizer Word : \u001b[39m\u001b[38;5;124m\"\u001b[39m,\u001b[43mlem\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mlemmatize\u001b[49m\u001b[43m(\u001b[49m\u001b[43mword\u001b[49m\u001b[43m,\u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mv\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m)\u001b[49m)\n\u001b[0;32m      7\u001b[0m \u001b[38;5;28mprint\u001b[39m(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mStemmed Word : \u001b[39m\u001b[38;5;124m\"\u001b[39m,stem\u001b[38;5;241m.\u001b[39mstem(word))\n",
+      "File \u001b[1;32mC:\\Python310\\lib\\site-packages\\nltk\\stem\\wordnet.py:45\u001b[0m, in \u001b[0;36mWordNetLemmatizer.lemmatize\u001b[1;34m(self, word, pos)\u001b[0m\n\u001b[0;32m     33\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mlemmatize\u001b[39m(\u001b[38;5;28mself\u001b[39m, word: \u001b[38;5;28mstr\u001b[39m, pos: \u001b[38;5;28mstr\u001b[39m \u001b[38;5;241m=\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mn\u001b[39m\u001b[38;5;124m\"\u001b[39m) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m>\u001b[39m \u001b[38;5;28mstr\u001b[39m:\n\u001b[0;32m     34\u001b[0m \u001b[38;5;250m    \u001b[39m\u001b[38;5;124;03m\"\"\"Lemmatize `word` using WordNet's built-in morphy function.\u001b[39;00m\n\u001b[0;32m     35\u001b[0m \u001b[38;5;124;03m    Returns the input word unchanged if it cannot be found in WordNet.\u001b[39;00m\n\u001b[0;32m     36\u001b[0m \n\u001b[1;32m   (...)\u001b[0m\n\u001b[0;32m     43\u001b[0m \u001b[38;5;124;03m    :return: The lemma of `word`, for the given `pos`.\u001b[39;00m\n\u001b[0;32m     44\u001b[0m \u001b[38;5;124;03m    \"\"\"\u001b[39;00m\n\u001b[1;32m---> 45\u001b[0m     lemmas \u001b[38;5;241m=\u001b[39m \u001b[43mwn\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_morphy\u001b[49m(word, pos)\n\u001b[0;32m     46\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28mmin\u001b[39m(lemmas, key\u001b[38;5;241m=\u001b[39m\u001b[38;5;28mlen\u001b[39m) \u001b[38;5;28;01mif\u001b[39;00m lemmas \u001b[38;5;28;01melse\u001b[39;00m word\n",
+      "File \u001b[1;32mC:\\Python310\\lib\\site-packages\\nltk\\corpus\\util.py:121\u001b[0m, in \u001b[0;36mLazyCorpusLoader.__getattr__\u001b[1;34m(self, attr)\u001b[0m\n\u001b[0;32m    118\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m attr \u001b[38;5;241m==\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m__bases__\u001b[39m\u001b[38;5;124m\"\u001b[39m:\n\u001b[0;32m    119\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mAttributeError\u001b[39;00m(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mLazyCorpusLoader object has no attribute \u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m__bases__\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n\u001b[1;32m--> 121\u001b[0m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m__load\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\n\u001b[0;32m    122\u001b[0m \u001b[38;5;66;03m# This looks circular, but its not, since __load() changes our\u001b[39;00m\n\u001b[0;32m    123\u001b[0m \u001b[38;5;66;03m# __class__ to something new:\u001b[39;00m\n\u001b[0;32m    124\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28mgetattr\u001b[39m(\u001b[38;5;28mself\u001b[39m, attr)\n",
+      "File \u001b[1;32mC:\\Python310\\lib\\site-packages\\nltk\\corpus\\util.py:86\u001b[0m, in \u001b[0;36mLazyCorpusLoader.__load\u001b[1;34m(self)\u001b[0m\n\u001b[0;32m     84\u001b[0m             root \u001b[38;5;241m=\u001b[39m nltk\u001b[38;5;241m.\u001b[39mdata\u001b[38;5;241m.\u001b[39mfind(\u001b[38;5;124mf\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;132;01m{\u001b[39;00m\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39msubdir\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m/\u001b[39m\u001b[38;5;132;01m{\u001b[39;00mzip_name\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m\"\u001b[39m)\n\u001b[0;32m     85\u001b[0m         \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mLookupError\u001b[39;00m:\n\u001b[1;32m---> 86\u001b[0m             \u001b[38;5;28;01mraise\u001b[39;00m e\n\u001b[0;32m     88\u001b[0m \u001b[38;5;66;03m# Load the corpus.\u001b[39;00m\n\u001b[0;32m     89\u001b[0m corpus \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m__reader_cls(root, \u001b[38;5;241m*\u001b[39m\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m__args, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39m\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m__kwargs)\n",
+      "File \u001b[1;32mC:\\Python310\\lib\\site-packages\\nltk\\corpus\\util.py:81\u001b[0m, in \u001b[0;36mLazyCorpusLoader.__load\u001b[1;34m(self)\u001b[0m\n\u001b[0;32m     79\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[0;32m     80\u001b[0m     \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m---> 81\u001b[0m         root \u001b[38;5;241m=\u001b[39m \u001b[43mnltk\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mdata\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mfind\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43mf\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;132;43;01m{\u001b[39;49;00m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43msubdir\u001b[49m\u001b[38;5;132;43;01m}\u001b[39;49;00m\u001b[38;5;124;43m/\u001b[39;49m\u001b[38;5;132;43;01m{\u001b[39;49;00m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m__name\u001b[49m\u001b[38;5;132;43;01m}\u001b[39;49;00m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m)\u001b[49m\n\u001b[0;32m     82\u001b[0m     \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mLookupError\u001b[39;00m \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[0;32m     83\u001b[0m         \u001b[38;5;28;01mtry\u001b[39;00m:\n",
+      "File \u001b[1;32mC:\\Python310\\lib\\site-packages\\nltk\\data.py:583\u001b[0m, in \u001b[0;36mfind\u001b[1;34m(resource_name, paths)\u001b[0m\n\u001b[0;32m    581\u001b[0m sep \u001b[38;5;241m=\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m*\u001b[39m\u001b[38;5;124m\"\u001b[39m \u001b[38;5;241m*\u001b[39m \u001b[38;5;241m70\u001b[39m\n\u001b[0;32m    582\u001b[0m resource_not_found \u001b[38;5;241m=\u001b[39m \u001b[38;5;124mf\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;132;01m{\u001b[39;00msep\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;132;01m{\u001b[39;00mmsg\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;132;01m{\u001b[39;00msep\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;124m\"\u001b[39m\n\u001b[1;32m--> 583\u001b[0m \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mLookupError\u001b[39;00m(resource_not_found)\n",
+      "\u001b[1;31mLookupError\u001b[0m: \n**********************************************************************\n  Resource \u001b[93mwordnet\u001b[0m not found.\n  Please use the NLTK Downloader to obtain the resource:\n\n  \u001b[31m>>> import nltk\n  >>> nltk.download('wordnet')\n  \u001b[0m\n  For more information see: https://www.nltk.org/data.html\n\n  Attempted to load \u001b[93mcorpora/wordnet\u001b[0m\n\n  Searched in:\n    - 'C:\\\\Users\\\\harsh/nltk_data'\n    - 'C:\\\\Python310\\\\nltk_data'\n    - 'C:\\\\Python310\\\\share\\\\nltk_data'\n    - 'C:\\\\Python310\\\\lib\\\\nltk_data'\n    - 'C:\\\\Users\\\\harsh\\\\AppData\\\\Roaming\\\\nltk_data'\n    - 'C:\\\\nltk_data'\n    - 'D:\\\\nltk_data'\n    - 'E:\\\\nltk_data'\n**********************************************************************\n"
+     ]
+    }
+   ],
+   "source": [
+    "# from nltk.stem.wordnet import WordNetLemmatizer\n",
+    "# lem = WordNetLemmatizer()\n",
+    "# from nltk.stem.porter import PorterStemmer\n",
+    "# stem = PorterStemmer()\n",
+    "# word = \"flying\"\n",
+    "# print(\"Lemmatizer Word : \",lem.lemmatize(word,\"v\"))\n",
+    "# print(\"Stemmed Word : \",stem.stem(word))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "id": "4d4b9808",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['Albert',\n",
+       " 'Einstien',\n",
+       " 'war',\n",
+       " 'born',\n",
+       " 'in',\n",
+       " 'Ulm',\n",
+       " ',',\n",
+       " 'Germany',\n",
+       " 'in',\n",
+       " '1879',\n",
+       " '.']"
+      ]
+     },
+     "execution_count": 59,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sent = \"Albert Einstien war born in Ulm, Germany in 1879.\"\n",
+    "tokens = nltk.word_tokenize(sent)\n",
+    "tokens"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "id": "c6e1c2f7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "[nltk_data] Downloading package averaged_perceptron_tagger to\n",
+      "[nltk_data]     C:\\Users\\harsh\\AppData\\Roaming\\nltk_data...\n",
+      "[nltk_data]   Unzipping taggers\\averaged_perceptron_tagger.zip.\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 60,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "nltk.download('averaged_perceptron_tagger')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 61,
+   "id": "20a6be64",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[('Albert', 'NNP'),\n",
+       " ('Einstien', 'NNP'),\n",
+       " ('war', 'NN'),\n",
+       " ('born', 'VBN'),\n",
+       " ('in', 'IN'),\n",
+       " ('Ulm', 'NNP'),\n",
+       " (',', ','),\n",
+       " ('Germany', 'NNP'),\n",
+       " ('in', 'IN'),\n",
+       " ('1879', 'CD'),\n",
+       " ('.', '.')]"
+      ]
+     },
+     "execution_count": 61,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "nltk.pos_tag(tokens)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "b984fd88",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from collectionsctions import Counter\n",
+    "sentence = \"Texas A&M University is located in Texas\"\n",
+    "term_frequency = Counter(sentence.split())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "id": "fa835efc",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Counter({'Texas': 2,\n",
+       "         'A&M': 1,\n",
+       "         'University': 1,\n",
+       "         'is': 1,\n",
+       "         'located': 1,\n",
+       "         'in': 1})"
+      ]
+     },
+     "execution_count": 63,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "term_frequency"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
